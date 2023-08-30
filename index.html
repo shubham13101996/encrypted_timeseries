@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Viewer</title>
+</head>
+<body>
+  <h1>Data Viewer</h1>
+  <ul id="data-list"></ul>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const dataList = document.getElementById('data-list');
+
+    socket.on('data', encryptedValue => {
+      // Simulated decryption
+      const decryptedValue = parseFloat(encryptedValue) / 2;
+
+      const listItem = document.createElement('li');
+      listItem.textContent = `Decrypted Data: ${decryptedValue.toFixed(2)}`;
+      dataList.appendChild(listItem);
+    });
+  </script>
+</body>
+</html>
